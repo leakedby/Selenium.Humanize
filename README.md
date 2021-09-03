@@ -13,7 +13,7 @@ Consider giving it a ⭐ on Github.
 - Random delays
 
 # Example codes
-All examples can be found in this [tested page object model repository](https://github.com/earthlion/Tutti.Selenium).<br/>
+All examples can be found in this [Mouse Movement](https://github.com/earthlion/Selenium.Humanize/blob/main/Selenium.Humanize/Models/MouseMovement.cs) and (Keyboard Movement)[https://github.com/earthlion/Selenium.Humanize/blob/main/Selenium.Humanize/Models/KeyboardMovement.cs].<br/>
 If you have any questions, feel free to open an issue on Github.
 
 # Credits
