@@ -23,11 +23,13 @@ namespace Selenium.Humanize.Models
         /// Types like a human (with errors)
         /// </summary>
         /// <param name="text">The text we want to write</param>
-        public void Type(string text)
+        /// <param name="from">The speed from</param>
+        /// <param name="to">The speed to</param>
+        public void Type(string text, int from = 150, int to = 230)
         {
             foreach (var c in text)
             {
-                Thread.Sleep(Rnd.Next(150, 230));
+                Thread.Sleep(Rnd.Next(from, to));
 
                 Actions action = new Actions(Driver);
                 action.SendKeys(c.ToString()).Perform();
