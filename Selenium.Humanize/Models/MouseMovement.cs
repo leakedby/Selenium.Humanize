@@ -161,7 +161,10 @@ namespace Selenium.Humanize.Models
                 {
                     Driver.ExecuteJavaScript(Helper.GetEmbeddedResourceFile("ShowMouse.js"));
                 }
-                catch (Exception ex) { }
+                catch
+                {
+                    // ignored
+                }
             }
 
             var defaultMouse = new PointerInputDevice(PointerKind.Mouse, "default mouse");
@@ -211,7 +214,10 @@ namespace Selenium.Humanize.Models
                         actionExecutor.PerformActions(actionBuilder.ToActionSequenceList());
                         actionBuilder = new ActionBuilder();
                     }
-                    catch (Exception ex) { }
+                    catch
+                    {
+                        //ignore
+                    }
 
                     pointsUsed += movementPoints;
                 }
@@ -242,7 +248,10 @@ namespace Selenium.Humanize.Models
                         actionExecutor.PerformActions(actionBuilder.ToActionSequenceList());
                         actionBuilder = new ActionBuilder();
                     }
-                    catch (Exception ex) { }
+                    catch
+                    {
+                        // ignored
+                    }
                 }
             }
 
@@ -333,8 +342,14 @@ namespace Selenium.Humanize.Models
 
         private Size GetScrollOffset()
         {
-            var scrollHeight = (long)Driver.ExecuteJs(@"return (window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop);");
-            var scrollWidth = (long)Driver.ExecuteJs(@"return (window.pageXOffset || (document.documentElement || document.body.parentNode || document.body).scrollLeft);");
+            var hResult =
+                Driver.ExecuteJs(
+                    @"return (window.pageYOffset || (document.documentElement || document.body.parentNode || document.body).scrollTop);");
+            var scrollHeight = Convert.ToInt64(hResult);
+            var wResult =
+                Driver.ExecuteJs(
+                    @"return (window.pageXOffset || (document.documentElement || document.body.parentNode || document.body).scrollLeft);");
+            var scrollWidth = Convert.ToInt64(wResult);
 
             return new Size((int)scrollWidth, (int)scrollHeight);
         }
